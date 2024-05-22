@@ -18,8 +18,18 @@
 * Перезапускаем докер контейнер через 'docker restart [container_id|container_name]'.
 * ![](./screenshots/img_1.9.png)
 ## Part 2. Операции с контейнером
-* 
+* Прочитаем конфигурационный файл '/etc/nginx/nginx.conf' внутри докер контейнера через команду 'docker exec [container_id|container_name] [command]'.
 * ![](./screenshots/img_2.1.png)
+* 
+* ![](./screenshots/img_2.2.png)
+* 
+* ![](./screenshots/img_2.3.png)
+* 
+* ![](./screenshots/img_2.4.png)
+* 
+* ![](./screenshots/img_2.5.png)
+* 
+* ![](./screenshots/img_2.6.png)
 ## Part 3. Мини веб-сервер
 * 
 * ![](./screenshots/img_3.1.png)
