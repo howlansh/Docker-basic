@@ -34,19 +34,7 @@
 * ![](./screenshots/img_2.5.png)
 * Удаляем образ через 'docker rmi -f [image_id|repository]'. Флаг 'f', чтобы не удалять перед этим контейнеры. Потом удаляем остановленный контейнер через 'docker rm [container_id].
 * ![](./screenshots/img_2.6.png)
-* Итак, при импорте дампа обратно в новый образ докера необходимо указать дополнительные флаги для воссоздания контекста.Импортируем контейнер обратно через команду 'docker import --change 'CMD [startup_command]' [filename.tar] [name]'. Запускаем как обычно импортированный контейнер.
+* Итак, при импорте дампа обратно в новый образ докера необходимо указать дополнительные флаги для воссоздания контекста. Импортируем контейнер обратно через команду 'docker import --change 'CMD [startup_command]' [filename.tar] [name]'. Запускаем импортированный контейнер как обычно.
 * ![](./screenshots/img_2.8.png)
 * Проверяем ещё раз "localhost:80/status".
 * ![](./screenshots/img_2.9.png)
-## Part 3. Мини веб-сервер
-* 
-* ![](./screenshots/img_3.1.png)
-## Part 4. Свой докер
-* 
-* ![](./screenshots/img_4.1.png)
-## Part 5. Dockle
-* 
-* ![](./screenshots/img_5.1.png)
-## Part 6. Базовый Docker Compose
-* 
-* ![](./screenshots/img_6.1.png)
