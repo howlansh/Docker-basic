@@ -1,0 +1,12 @@
+FROM nginx
+
+RUN apt update -y && apt install -y gcc && apt install -y libfcgi-dev && apt install -y spawn-fcgi
+
+COPY ./nginx/nginx.conf /etc/nginx/
+COPY ./nginx/nginx.service /etc/nginx/
+COPY ./server/spawn_fcgi.c /
+COPY ./server/spawn_fcgi.sh /
+
+RUN gcc -Wall -Werror -Wextra -o spawn_fcgi.out spawn_fcgi.c -lfcgi
+
+ENTRYPOINT ["/spawn_fcgi.sh"]
