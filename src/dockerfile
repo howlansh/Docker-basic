@@ -9,22 +9,25 @@ COPY ./server/spawn_fcgi.c /
 COPY ./server/spawn_fcgi.sh /
 
 RUN gcc -Wall -Werror -Wextra -o spawn_fcgi.out spawn_fcgi.c -lfcgi && \
-chmod u-s usr/bin/mount && \
-chmod u-s usr/bin/newgrp && \
-chmod u-s usr/bin/gpasswd && \
-chmod u-s usr/bin/chfn && \
-chmod u-s usr/bin/umount && \
-chmod u-s usr/bin/chsh && \
-chmod u-s usr/bin/su && \
-chmod u-s usr/bin/passwd && \
-chmod g-s usr/bin/expiry && \
-chmod g-s usr/sbin/unix_chkpwd && \
-chmod g-s usr/bin/chage && \
-chown -R nginx:nginx /etc/nginx/nginx.conf && \
+#chmod u-s usr/bin/mount && \
+#chmod u-s usr/bin/newgrp && \
+#chmod u-s usr/bin/gpasswd && \
+#chmod u-s usr/bin/chfn && \
+#chmod u-s usr/bin/umount && \
+#chmod u-s usr/bin/chsh && \
+#chmod u-s usr/bin/su && \
+#chmod u-s usr/bin/passwd && \
+#chmod g-s usr/bin/expiry && \
+#chmod g-s usr/sbin/unix_chkpwd && \
+#chmod g-s usr/bin/chage && \
+chown -R nginx:nginx /etc/nginx/* && \
 chown -R nginx:nginx /var/cache/nginx && \
-chown -R nginx:nginx /home
+chown -R nginx:nginx /home && \
+touch /var/run/nginx.pid && \
+chown -R nginx:nginx /var/run/*
 
 HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1
 
+USER nginx
 
 ENTRYPOINT ["/spawn_fcgi.sh"]
