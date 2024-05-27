@@ -4,6 +4,7 @@ RUN apt update -y && apt install -y gcc && apt install -y libfcgi-dev && apt ins
 
 COPY ./nginx/nginx.conf /etc/nginx/
 COPY ./nginx/nginx.service /etc/nginx/
+COPY ./nginx/fastcgi.conf /etc/nginx/
 COPY ./server/spawn_fcgi.c /
 COPY ./server/spawn_fcgi.sh /
 
@@ -18,9 +19,12 @@ chmod u-s usr/bin/su && \
 chmod u-s usr/bin/passwd && \
 chmod g-s usr/bin/expiry && \
 chmod g-s usr/sbin/unix_chkpwd && \
-chmod g-s usr/bin/chage
+chmod g-s usr/bin/chage && \
+chown -R nginx:nginx /etc/nginx/nginx.conf && \
+chown -R nginx:nginx /var/cache/nginx && \
+chown -R nginx:nginx /home
 
-HEALTHCHECK --interval=5m --timeout=3s \
-  CMD curl -f http://localhost/ || exit 1
+HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1
+
 
 ENTRYPOINT ["/spawn_fcgi.sh"]
